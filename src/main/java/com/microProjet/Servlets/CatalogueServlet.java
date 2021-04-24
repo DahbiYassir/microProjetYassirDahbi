@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.microProjet.beans.Article;
 import com.microProjet.beans.Categorie;
+import com.microProjet.connection.JpaConnection;
 import com.microProjet.connection.SqlConnection;
 
 /**
@@ -33,13 +34,13 @@ public class CatalogueServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Categorie> listeCategorie = SqlConnection.list();
+		ArrayList<Categorie> listeCategorie = JpaConnection.listCategoriesJpa();
 		request.setAttribute("listeCategorie", listeCategorie);
 		
 		
 		
 		ArrayList<Article> listeArticle = new ArrayList<Article>();
-		listeArticle = SqlConnection.listeProduit(request.getParameter("categorie"));
+		listeArticle = JpaConnection.listeProduitJpa(request.getParameter("categorie"));
 		request.setAttribute("article", listeArticle);
 		request.getRequestDispatcher("catalogue.jsp").forward(request, response);
 		

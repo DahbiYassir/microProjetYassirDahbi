@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.microProjet.beans.Inscription;
+import com.microProjet.connection.JpaConnection;
 import com.microProjet.connection.SqlConnection;
 
 /**
@@ -53,9 +54,9 @@ public class IdentificationServlet extends HttpServlet {
 		inscription.setEmail(email);
 		inscription.setMotDePasse(mdp);
 		
-		SqlConnection loginConnection= new SqlConnection();
-		try {
-			boolean loginValidate = loginConnection.login(inscription);
+		
+		
+			boolean loginValidate = JpaConnection.loginJpa(inscription);
 			if(loginValidate==true) {
 				try {
 					String query="select * from clients where Email='"+email+"'";
@@ -79,14 +80,11 @@ public class IdentificationServlet extends HttpServlet {
 				
 			}
 			else request.getRequestDispatcher("identifier.jsp").forward(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		
 		
 		
 		
 	}
 
-}
+

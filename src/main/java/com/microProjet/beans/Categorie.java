@@ -1,6 +1,12 @@
 package com.microProjet.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity @Table(name="categories")
 public class Categorie {
+	@Id
 	int id;
 	String categorie;
 	

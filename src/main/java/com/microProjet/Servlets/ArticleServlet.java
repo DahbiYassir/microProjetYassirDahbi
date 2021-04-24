@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.microProjet.beans.Article;
+import com.microProjet.connection.JpaConnection;
 import com.microProjet.connection.SqlConnection;
 
 /**
@@ -36,7 +37,7 @@ public class ArticleServlet extends HttpServlet {
 		article.setCodeArticle(id);
 		
 		try {
-			article = SqlConnection.ArticleDisplay(article);
+			article = JpaConnection.ArticleDisplayJpa(article);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

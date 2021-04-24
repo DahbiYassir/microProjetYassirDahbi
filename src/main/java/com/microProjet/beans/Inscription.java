@@ -1,7 +1,24 @@
 package com.microProjet.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity @Table(name="clients")
 public class Inscription {
-	private String nom, prenom, adresse, email, motDePasse;
+	@Id //@GeneratedValue( strategy=GenerationType.AUTO)
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	private String nom, prenom, adresse, email, motPasse;
 	private int tel;
 
 	public int getTel() {
@@ -45,11 +62,27 @@ public class Inscription {
 	}
 
 	public String getMotDePasse() {
-		return motDePasse;
+		return motPasse;
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		this.motPasse = motDePasse;
+	}
+
+	public Inscription(String adresse, String email, String motDePasse,String nom, String prenom, int tel,int id) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.email = email;
+		this.motPasse = motDePasse;
+		this.tel = tel;
+	}
+
+	public Inscription() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }

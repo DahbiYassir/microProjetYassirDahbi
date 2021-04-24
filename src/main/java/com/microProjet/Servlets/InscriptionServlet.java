@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.microProjet.beans.Inscription;
+import com.microProjet.connection.JpaConnection;
 import com.microProjet.connection.SqlConnection;
 
 /**
@@ -54,8 +55,7 @@ public class InscriptionServlet extends HttpServlet {
 		inscription.setEmail(email);
 		inscription.setMotDePasse(motDePasse);
 		
-		SqlConnection registerConnection = new SqlConnection();
-		String registerValidate = registerConnection.register(inscription);
+		String registerValidate = JpaConnection.jpaRegister(inscription);
 		
 		if(registerValidate.equals("Inscription réussie"))
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);

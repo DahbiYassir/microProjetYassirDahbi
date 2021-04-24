@@ -1,6 +1,21 @@
 package com.microProjet.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity @Table(name="clients")
 public class Identification {
+	@Id
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String email,motDePasse;
 
 	public String getEmail() {
